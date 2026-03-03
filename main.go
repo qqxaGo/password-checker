@@ -12,7 +12,14 @@ func main() {
 	fmt.Print("Введите пароль: ")
 	fmt.Scan(&password)
 
-	result := checker.Analyze(password)
+	level, missing := checker.Analyze(password)
 
-	fmt.Println("Результат:", result)
+	fmt.Println("Уровень:", level)
+
+	if len(missing) > 0 {
+		fmt.Println("Что улучшить: ")
+		for _, m := range missing {
+			fmt.Println("-", m)
+		}
+	}
 }
